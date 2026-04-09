@@ -183,13 +183,13 @@ export const concepts: Concept[] = [
 ];
 
 export const categories: Category[] = [
-  { name: "Tech", slug: "tech", conceptCount: 4 },
-  { name: "Home", slug: "home", conceptCount: 3 },
-  { name: "Lifestyle", slug: "lifestyle", conceptCount: 1 },
-  { name: "Travel", slug: "travel", conceptCount: 1 },
-  { name: "Productivity", slug: "productivity", conceptCount: 1 },
-  { name: "Mobility", slug: "mobility", conceptCount: 1 },
-  { name: "Furniture", slug: "furniture", conceptCount: 1 },
+  { name: "Tech", slug: "tech", conceptCount: 4, description: "The next generation of personal electronics, wearables, and smart devices." },
+  { name: "Home", slug: "home", conceptCount: 3, description: "Smart home innovations, furniture concepts, and living space upgrades." },
+  { name: "Lifestyle", slug: "lifestyle", conceptCount: 1, description: "Products designed to enhance your daily routine and personal well-being." },
+  { name: "Travel", slug: "travel", conceptCount: 1, description: "Gear and gadgets for the modern traveler and commuter." },
+  { name: "Productivity", slug: "productivity", conceptCount: 1, description: "Tools and devices that help you focus and get more done." },
+  { name: "Mobility", slug: "mobility", conceptCount: 1, description: "Last-mile transport, micro-vehicles, and urban movement solutions." },
+  { name: "Furniture", slug: "furniture", conceptCount: 1, description: "Reimagined seating, desks, and home furnishings." },
 ];
 
 export const footerColumns: FooterColumn[] = [

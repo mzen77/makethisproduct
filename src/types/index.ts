@@ -25,6 +25,7 @@ export interface Category {
   name: string;
   slug: string;
   conceptCount: number;
+  description: string;
 }
 
 export interface NavLink {

@@ -31,7 +31,7 @@ export default function CategoriesPage() {
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {featured.map((category) => (
-            <Link key={category.slug} href="/categories">
+            <Link key={category.slug} href={`/category/${category.slug}`}>
               <div className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-5 hover:bg-muted/50 transition-colors">
                 <div className="flex items-center justify-between mb-8">
                   <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center font-serif">
@@ -57,7 +57,7 @@ export default function CategoriesPage() {
           {remaining.map((category) => (
             <Link
               key={category.slug}
-              href="/categories"
+              href={`/category/${category.slug}`}
               className="flex items-center gap-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Check className="h-4 w-4" />
