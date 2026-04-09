@@ -1,18 +1,12 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { categories, concepts } from "@/lib/data";
+import { categories } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function CategoriesPage() {
   const featured = categories.slice(0, 6);
   const remaining = categories.slice(6);
-
-  // Count concepts per category
-  function conceptCount(cat: typeof categories[number]) {
-    const count = concepts.filter((c) => c.categorySlug === cat.slug).length;
-    return count || cat.conceptCount;
-  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -47,7 +41,7 @@ export default function CategoriesPage() {
                 <div>
                   <div className="font-semibold text-base">{category.name}</div>
                   <div className="text-xs text-muted-foreground">
-                    {conceptCount(category)} concept{conceptCount(category) !== 1 ? "s" : ""}
+                    {category.conceptCount} concept{category.conceptCount !== 1 ? "s" : ""}
                   </div>
                 </div>
               </div>
@@ -69,7 +63,7 @@ export default function CategoriesPage() {
               <Check className="h-4 w-4" />
               <span className="font-medium">{category.name}</span>
               <span className="text-muted-foreground">
-                ({conceptCount(category)} concept{conceptCount(category) !== 1 ? "s" : ""})
+                ({category.conceptCount} concept{category.conceptCount !== 1 ? "s" : ""})
               </span>
             </Link>
           ))}
