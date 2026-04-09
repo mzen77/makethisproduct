@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { categories } from "@/lib/data";
+import { categories, concepts } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -8,57 +8,68 @@ export default function CategoriesPage() {
   const featured = categories.slice(0, 6);
   const remaining = categories.slice(6);
 
+  // Count concepts per category
+  function conceptCount(cat: typeof categories[number]) {
+    const count = concepts.filter((c) => c.categorySlug === cat.slug).length;
+    return count || cat.conceptCount;
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 px-6 md:px-12 lg:px-24 py-8">
-        <span className="text-xs font-bold uppercase tracking-wide text-primary mb-2 block">
-          BROWSE
-        </span>
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Categories</h1>
-        <p className="text-muted-foreground mb-8">
-          Every concept, organized by theme. Pick a category to explore.
-        </p>
+        {/* Page header with border-b */}
+        <div className="mb-12 border-b border-border pb-8">
+          <span className="text-xs font-bold uppercase tracking-[1.2px] text-primary mb-3 block">
+            Browse
+          </span>
+          <h1 className="text-4xl font-bold tracking-tight mb-2" style={{ fontSize: 36 }}>
+            Categories
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            Every concept, organized by theme. Pick a category to explore.
+          </p>
+        </div>
 
-        {/* Featured categories */}
-        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4 block">
-          FEATURED
-        </span>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Featured section */}
+        <h3 className="text-xs font-bold uppercase tracking-[1.2px] text-muted-foreground mb-5">
+          Featured
+        </h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {featured.map((category) => (
-            <Link
-              key={category.slug}
-              href={`/categories/${category.slug}`}
-              className="border border-border rounded-xl p-6 hover:bg-muted/50 transition-colors flex items-center gap-4"
-            >
-              <div className="w-10 h-10 bg-foreground text-background rounded-full flex items-center justify-center font-serif text-lg">
-                {category.name.charAt(0)}
-              </div>
-              <div>
-                <div className="font-semibold">{category.name}</div>
-                <div className="text-sm text-muted-foreground">
-                  {category.conceptCount} concept{category.conceptCount !== 1 ? "s" : ""}
+            <Link key={category.slug} href="/categories">
+              <div className="group relative flex flex-col justify-between rounded-xl border border-border bg-background p-5 hover:bg-muted/50 transition-colors">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center font-serif">
+                    {category.name.charAt(0)}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-base">{category.name}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {conceptCount(category)} concept{conceptCount(category) !== 1 ? "s" : ""}
+                  </div>
                 </div>
               </div>
             </Link>
           ))}
         </div>
 
-        {/* More categories */}
-        <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mt-8 mb-4 block">
-          MORE CATEGORIES
-        </span>
+        {/* More Categories section */}
+        <h3 className="text-xs font-bold uppercase tracking-[1.2px] text-muted-foreground mt-12 mb-5">
+          More Categories
+        </h3>
         <div className="space-y-2">
           {remaining.map((category) => (
             <Link
               key={category.slug}
-              href={`/categories/${category.slug}`}
-              className="flex items-center gap-3 py-2 text-sm hover:text-foreground transition-colors text-muted-foreground"
+              href="/categories"
+              className="flex items-center gap-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Check className="h-4 w-4" />
               <span className="font-medium">{category.name}</span>
               <span className="text-muted-foreground">
-                ({category.conceptCount} concept{category.conceptCount !== 1 ? "s" : ""})
+                ({conceptCount(category)} concept{conceptCount(category) !== 1 ? "s" : ""})
               </span>
             </Link>
           ))}
