@@ -19,6 +19,7 @@ export interface Concept {
   theProblem?: string;
   theConcept?: string;
   galleryImages?: string[];
+  video?: string;
 }
 
 export interface Category {

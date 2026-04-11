@@ -29,6 +29,7 @@ export const concepts: Concept[] = [
       "/images/hero-levitating-lamp.png",
       "/images/hero-levitating-lamp.png",
     ],
+    video: "/images/hf_20260411_014823_6af24b48-fe80-477d-b173-9e4c50c58fdb.mp4",
   },
   {
     slug: "omni-modular-pack",

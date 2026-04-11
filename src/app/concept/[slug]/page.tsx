@@ -61,6 +61,21 @@ export default async function ConceptPage({
               )}
             </div>
 
+            {/* Video */}
+            {concept.video && (
+              <div className="relative rounded-xl overflow-hidden bg-muted shadow-sm">
+                <video
+                  src={concept.video}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full rounded-xl"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
+
             {/* Thumbnail row */}
             <div className="flex gap-3 overflow-x-auto">
               {galleryImages.map((img, index) => (
