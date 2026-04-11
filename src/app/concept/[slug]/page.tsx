@@ -4,6 +4,7 @@ import { Share2, Bookmark, Check } from "lucide-react";
 import { concepts } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import VideoPlayer from "@/components/VideoPlayer";
 
 export function generateStaticParams() {
   return concepts.map((concept) => ({
@@ -61,21 +62,6 @@ export default async function ConceptPage({
               )}
             </div>
 
-            {/* Video */}
-            {concept.video && (
-              <div className="relative rounded-xl overflow-hidden bg-muted shadow-sm">
-                <video
-                  src={concept.video}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="w-full rounded-xl"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            )}
-
             {/* Thumbnail row */}
             <div className="flex gap-3 overflow-x-auto">
               {galleryImages.map((img, index) => (
@@ -116,6 +102,15 @@ export default async function ConceptPage({
                 {concept.howItWorks}
               </p>
             </div>
+
+            {/* Concept Video */}
+            {concept.video && (
+              <VideoPlayer
+                src={concept.video}
+                poster={concept.image}
+                title={concept.title}
+              />
+            )}
 
             <div className="space-y-6 pt-2 border-t border-border">
               <div>
